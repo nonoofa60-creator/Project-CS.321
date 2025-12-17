@@ -1,0 +1,39 @@
+# DFA to check if a binary number is divisible by 3
+
+def is_divisible_by_3(binary_string):
+    # States: q0, q1, q2
+    state = "q0"   # start state
+
+    for bit in binary_string:
+        if state == "q0":
+            if bit == '0':
+                state = "q0"
+            elif bit == '1':
+                state = "q1"
+
+        elif state == "q1":
+            if bit == '0':
+                state = "q2"
+            elif bit == '1':
+                state = "q0"
+
+        elif state == "q2":
+            if bit == '0':
+                state = "q1"
+            elif bit == '1':
+                state = "q2"
+
+    # Accepting state is q0
+    if state == "q0":
+        return True
+    else:
+        return False
+
+
+# -------- Main Program --------
+binary_input = input("Enter a binary number: ")
+
+if is_divisible_by_3(binary_input):
+    print("Accepted: The number is divisible by 3.")
+else:
+    print("Rejected: The number is NOT divisible by 3.")
